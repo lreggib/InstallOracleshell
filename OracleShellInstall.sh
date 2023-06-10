@@ -54,18 +54,20 @@ shmTotal=$(df -k /dev/shm | awk '{print $2}' | head -n 2 | tail -n 1)
 
 
 ORACLE_SID=orcl
+GRID_SID=+ASM
 ISCDB=FALSE
 PDBNAME=pdb01
 ROOTPASSWD=oracle
 ORAPASSWD=oracle
 GRIDPASSWD=oracle
+# 712
 ENV_BASE_DIR=/u01/app
 ORADATADIR=/oradata
 ARCHIVEDIR=/archivelog
 BACKUPDIR=/backup
 SCRIPTSDIR=/home/oracle/scripts
 CHARACTERSET=AL32UTF8
-GRID_SID=+ASM
+
 
 ASMDATANAME=DATA
 ASMOCRNAME=OCR
