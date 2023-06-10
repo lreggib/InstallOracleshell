@@ -16,29 +16,19 @@ echo "##########################################################################
 # Parameters For Install
 ####################################################################################
 #Oracle Install Mode(RAC/Single/RESTART)
+nodeNum=1
 OracleInstallMode=
-SOFTWAREDIR=$(pwd)
-DAYTIME=$(date +%Y%m%d)
-RELS=$(more /etc/system-release)
-OS_VER_PRI=$(echo "${RELS#*release}" | awk '{print $1}' | cut -f 1 -d '.')
-memTotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-swapTotal=$(grep -i 'swaptotal' /proc/meminfo | awk '{print $2}')
-shmTotal=$(df -k /dev/shm | awk '{print $2}' | head -n 2 | tail -n 1)
+DB_VERSION=
 HOSTNAME=orcl
+
+#DNS
+DNS=N
+DNSSERVER=N
+DNSNAME=
+DNSIP=
+
+# RAC 这些变量不能为空
 PUBLICIP=
-ORACLE_SID=orcl
-ISCDB=FALSE
-PDBNAME=pdb01
-ROOTPASSWD=oracle
-ORAPASSWD=oracle
-GRIDPASSWD=oracle
-ENV_BASE_DIR=/u01/app
-ORADATADIR=/oradata
-ARCHIVEDIR=/archivelog
-BACKUPDIR=/backup
-SCRIPTSDIR=/home/oracle/scripts
-CHARACTERSET=AL32UTF8
-GRID_SID=+ASM
 RACPUBLICFCNAME=
 RACPRIVFCNAME=
 RACPRIVFCNAME1=
@@ -52,6 +42,31 @@ RAC1PRIVIP1=
 RAC2PRIVIP1=
 RACSCANIP=
 scan_sum=0
+
+
+SOFTWAREDIR=$(pwd)
+DAYTIME=$(date +%Y%m%d)
+RELS=$(more /etc/system-release)
+OS_VER_PRI=$(echo "${RELS#*release}" | awk '{print $1}' | cut -f 1 -d '.')
+memTotal=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+swapTotal=$(grep -i 'swaptotal' /proc/meminfo | awk '{print $2}')
+shmTotal=$(df -k /dev/shm | awk '{print $2}' | head -n 2 | tail -n 1)
+
+
+ORACLE_SID=orcl
+ISCDB=FALSE
+PDBNAME=pdb01
+ROOTPASSWD=oracle
+ORAPASSWD=oracle
+GRIDPASSWD=oracle
+ENV_BASE_DIR=/u01/app
+ORADATADIR=/oradata
+ARCHIVEDIR=/archivelog
+BACKUPDIR=/backup
+SCRIPTSDIR=/home/oracle/scripts
+CHARACTERSET=AL32UTF8
+GRID_SID=+ASM
+
 ASMDATANAME=DATA
 ASMOCRNAME=OCR
 OCR_BASEDISK=
@@ -67,16 +82,11 @@ ONLYINSTALLORACLE=N
 ONLYCREATEDB=N
 GPATCH=
 OPATCH=
-nodeNum=1
-DB_VERSION=
-OracleInstallMode=
+
+
 TuXingHua=N
 UDEV=Y
-#DNS
-DNS=N
-DNSSERVER=N
-DNSNAME=
-DNSIP=
+
 ###################################################################################
 ##The following is a custom function：
 ####################################################################################
